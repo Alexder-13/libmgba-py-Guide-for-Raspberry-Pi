@@ -1,9 +1,8 @@
 mGBA Python Bindings
 =====================
 
-This is a fork of the Python bindings in the
-[mGBA repository](https://github.com/mgba-emu/mgba/tree/master/src/platform/python)
-with some modifications to get it to build easily on my machine.
+This is a fork of the Python bindings in the [mGBA repository](https://github.com/mgba-emu/mgba/tree/master/src/platform/python) and [libmgba-py repository](https://github.com/hanzi/libmgba-py)
+with some modifications to get it to build easily on Raspberry Pi 3b or 4 (Pi 5 not tested).
 
 
 ## What this is (and isn't)
@@ -18,45 +17,50 @@ It does **not** come with any GUI, i.e. you can't use it to just
 remote control an instance of the mGBA emulator.
 
 
-## Build Instructions
+## Build Instructions on Raspberry OS Pi 64 bits (Bookworm)
 
-### Compiling on Windows (64-bit)
+### mGBA 0.10.1
 
-Heads up: This will require a couple of GB of disk space.
+   1. Install depedencies `sudo apt install git python3-setuptools python3-cffi python3-distutils python3-tk libmgba0.10 portaudio19-dev cmake libedit-dev libavcodec-dev libavfilter-dev libpng-dev libzip-dev libminizip-dev zipcmp zipmerge ziptool libepoxy-dev libelf-dev libsdl2-dev`
+   2. `git clone https://github.com/hanzi/libmgba-py/`
+   3. `git clone --depth 1 --branch 0.10.1 https://github.com/mgba-emu/mgba`
+   4. `cp libmgba-py/core.* mgba/src/platform/python/`
+   5. `cp libmgba-py/mgba/* mgba/src/platform/python/mgba/`
+   6. `cd mgba/`
+   7. `mkdir build`
+   8. `cd build`
+   9. `cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DBUILD_PYTHON=ON -DBUILD_QT=OFF ..`
+   10. `make -j4` (this should take about 6 minutes on Pi4)
+   
+   the build files are located in `/home/pi/mgba/build/python/lib.linux-aarch64-cpython-312`
+   
+   You can clean libmgba and mgba folder if you want:
+   1. `rm -rf /home/pi/libmgba-py/`
+   2. `rm -rf /home/pi/mgba`
 
-1. Have [Visual Studio](https://visualstudio.microsoft.com/vs/community/) installed (the free Community Edition is enough.)
-2. Have [Python](https://www.python.org/downloads/windows/) installed.   
-   (Also make sure you have `setuptools` installed. You might have to run `pip install setuptools` for that.)
-3. Have [Git](https://git-scm.com/download/win) installed.
-4. Download this repository to somewhere on your hard drive (using `git clone` or by just downloading it as a ZIP file.)
-5. Open the Start menu, look for the `Visual Studio 2022` directory, and run the `x64 Native Tools Command Prompt`.
-6. Navigate to wherever you have extracted this repository (e.g. `cd /D C:\Users\someone\Desktop\libmgba-py`.)
-7. Run `build_win64.bat`
+### mGBA 0.10.x
 
-Afterwards, distributable files should be available in the
-`build\win64\mgba` directory. You can copy that entire directory
-into your Python project, or create a package from it.
+These instructions CAN ONLY WORK with the mGBA 0.10.x branches, replace x with the number desired
 
-### Compiling on Linux/Ubuntu
+example for mGBA 0.10.3
+   1. Install depedencies `sudo apt install git python3-setuptools python3-cffi python3-distutils python3-tk libmgba0.10 portaudio19-dev cmake libedit-dev libavcodec-dev libavfilter-dev libpng-dev libzip-dev libminizip-dev zipcmp zipmerge ziptool libepoxy-dev libelf-dev libsdl2-dev`
+   2. `git clone https://github.com/hanzi/libmgba-py/`
+   3. `git clone --depth 1 --branch 0.10.3 https://github.com/mgba-emu/mgba`
+   4. `cp libmgba-py/core.* mgba/src/platform/python/`
+   5. `cp libmgba-py/mgba/* mgba/src/platform/python/mgba/`
+   6. `cd mgba/`
+   7. `mkdir build`
+   8. `cd build`
+   9. `cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DBUILD_PYTHON=ON -DBUILD_QT=OFF ..`
+   10. `make -j4` (this should take about 6 minutes on Pi4)
 
-These instructions only works for Ubuntu, specifically for versions
-that are supported by mGBA's Docker build containers. Available tags
-can be checked here: https://hub.docker.com/r/mgba/ubuntu/tags
+the build files are located in `/home/pi/mgba/build/python/lib.linux-aarch64-cpython-312`
 
-1. Have [Docker](https://docs.docker.com/engine/install/ubuntu/) installed
-2. Have Git installed (`apt install git`)
-3. Download this repository to somewhere on your hard drive (using `git clone` or by just downloading it as a ZIP file.)
-4. Open a shell and navigate to this directory.
-5. Run `build_ubuntu.sh`
+   ### WARNING : DON'T DELETE NOR MOVE THE /home/pi/mgba/build FOLDER ! (unless you used mGBA 0.10.1 branch)
 
-### Compiling on MacOS
-
-1. Have [Homebrew](https://brew.sh/) installed
-2. Have Xcode installed from the app store
-3. Download this repository to somewhere on your hard drive (using `git clone` or by just downloading it as a ZIP file.)
-4. Open a shell and navigate to this directory.
-5. Run `./build_mac.sh`
-
+   but you can clean libmgba and mgba folder if you want:
+   
+   `rm -rf /home/pi/libmgba-py/`
 
 ## License
 
