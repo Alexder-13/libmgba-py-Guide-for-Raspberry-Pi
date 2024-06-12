@@ -2,7 +2,7 @@ mGBA Python Bindings
 =====================
 
 This is a fork of the Python bindings in the [mGBA repository](https://github.com/mgba-emu/mgba/tree/master/src/platform/python) and [libmgba-py repository](https://github.com/hanzi/libmgba-py)
-with some modifications to get it to build easily on Raspberry Pi 3b or 4 (Pi 5 not tested).
+with some modifications to get it to build easily on Raspberry Pi 3B or 4 (Pi 5 not tested).
 
 
 ## What this is (and isn't)
@@ -17,7 +17,7 @@ It does **not** come with any GUI, i.e. you can't use it to just
 remote control an instance of the mGBA emulator.
 
 
-## Build Instructions on Raspberry OS Pi 64 bits (Bookworm)
+## Build Instructions on Raspberry Pi OS 64 bits (Bookworm) (tested on 3B and 4)
 
 ### mGBA 0.10.1
 
