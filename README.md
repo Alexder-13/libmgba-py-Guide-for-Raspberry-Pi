@@ -36,7 +36,7 @@ remote control an instance of the mGBA emulator.
 
 ### mGBA 0.10.x
 
-   These instructions CAN ONLY WORK with the mGBA 0.10.x branches, replace x with the number desired
+   These instructions CAN ONLY WORK with the mGBA 0.10.x branches, replace x with the number desired (not tested with mGBA version higher than 0.10.3)
    
    example for mGBA 0.10.3
    1. Install depedencies `sudo apt install git python3-setuptools python3-cffi python3-distutils python3-tk libmgba0.10 portaudio19-dev cmake libedit-dev libavcodec-dev libavfilter-dev libpng-dev libzip-dev libminizip-dev zipcmp zipmerge ziptool libepoxy-dev libelf-dev libsdl2-dev`
