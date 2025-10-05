@@ -1,4 +1,5 @@
 import os.path
+from pathlib import Path
 import platform
 import re
 import subprocess
@@ -38,13 +39,13 @@ if platform.system() == "Windows":
     os.remove(path_to_libmgba_py / "_builder_cdef.i")
 else:
     if platform.system() == "Darwin":
-        include_dirs.append("/opt/homebrew/include")
-        include_dirs.append("/usr/local/include")
-        library_dirs.append("/usr/local/lib")
+        include_dirs.append(Path("/opt/homebrew/include"))
+        include_dirs.append(Path("/usr/local/include"))
+        library_dirs.append(Path("/usr/local/lib"))
 
     library_dirs.append(path_to_mgba_build)
 
-    preprocessor_command = ["cc", "-E", *(f"-I{path.as_posix()}" for path in include_dirs)]
+    preprocessor_command = ["cc", "-E", *(f"-I{str(path)}" for path in include_dirs)]
     preprocessed_header = subprocess.check_output(
         preprocessor_command + [str(path_to_libmgba_py / "_builder_cdef.h")]).decode('utf-8')
 
