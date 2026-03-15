@@ -31,21 +31,21 @@ remote control an instance of the mGBA emulator.
    2. Download Pokébot-gen3 (if not done already)<br>`git clone --depth 1 https://github.com/40Cakes/pokebot-gen3`
    3. Now we create a special folder for the buids files and venv (or use your own)<br>`cd && mkdir LibmgbaForRPI`<br>`cd LibmgbaForRPI`
    4. We create a python venv (or use your own)<br>`python -m venv PyPokebot`
-   5. We install the pokebot-gen3 requirements with the venv (if not done already)<br>`/home/pi/LibmgbaForRPI/PyPokebot/bin/python /home/pi/pokebot-gen3/requirements.py`<br>(Press Enter when asked to "install libmgba-py anyway")
+   5. We install the pokebot-gen3 requirements with the venv (if not done already)<br>`$HOME/LibmgbaForRPI/PyPokebot/bin/python $HOME/pokebot-gen3/requirements.py`<br>(Press Enter when asked to "install libmgba-py anyway")
    6. `git clone https://github.com/hanzi/libmgba-py/`
    7. `git clone --depth 1 --branch 0.10.5 https://github.com/mgba-emu/mgba`
-   8. `cp /home/pi/LibmgbaForRPI/libmgba-py/core.* /home/pi/LibmgbaForRPI/mgba/src/platform/python/`
-   9. `cp /home/pi/LibmgbaForRPI/libmgba-py/mgba/* /home/pi/LibmgbaForRPI/mgba/src/platform/python/mgba/`
-   10. `cd /home/pi/LibmgbaForRPI/mgba`
+   8. `cp $HOME/LibmgbaForRPI/libmgba-py/core.* $HOME/LibmgbaForRPI/mgba/src/platform/python/`
+   9. `cp $HOME/LibmgbaForRPI/libmgba-py/mgba/* $HOME/LibmgbaForRPI/mgba/src/platform/python/mgba/`
+   10. `cd $HOME/LibmgbaForRPI/mgba`
    11. `mkdir build`
    12. `cd build`
    13. `cmake .. -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_C_FLAGS="-Wno-error=incompatible-pointer-types" -DENABLE_PYTHON=ON -DBUILD_PYTHON=ON -DBUILD_QT=OFF`
    14. `make CFLAGS="-Wno-error=incompatible-pointer-types" -j4`
-   15. `cp /home/pi/LibmgbaForRPI/mgba/build/python/lib.linux-aarch64-cpython-313/mgba/* /home/pi/pokebot-gen3/mgba/`
-   16. You can launch the game with this command (adapt it if your folders have a different name/location)<br>`/home/pi/LibmgbaForRPI/PyPokebot/bin/python /home/pi/pokebot-gen3/pokebot.py`
+   15. `cp $HOME/LibmgbaForRPI/mgba/build/python/lib.linux-aarch64-cpython-313/mgba/* $HOME/pokebot-gen3/mgba/`
+   16. You can launch the game with this command (adapt it if your folders have a different name/location)<br>`$HOME/LibmgbaForRPI/PyPokebot/bin/python $HOME/pokebot-gen3/pokebot.py`
    
    > [!WARNING]
-   > **DON'T DELETE NOR MOVE THE `/home/pi/LibmgbaForRPI/mgba/build` FOLDER !**
+   > **DON'T DELETE NOR MOVE THE `$HOME/LibmgbaForRPI/mgba/build` FOLDER !**
 
 ## License
 
